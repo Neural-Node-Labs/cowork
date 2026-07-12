@@ -1,0 +1,20 @@
+{
+  "name": "cowork",
+  "version": "0.1.0",
+  "description": "Multi-agent worker CLI: Orchestrator -> Planner -> Swarm -> Report, running on DeepSeek, ReAct-style.",
+  "type": "commonjs",
+  "bin": {
+    "cowork": "./bin/cowork.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.28.1"
+  }
+}

@@ -1,0 +1,19 @@
+services:
+  cowork:
+    build: .
+    image: cowork:latest
+    ports:
+      - '${COWORK_PORT:-5175}:5175'
+    volumes:
+      # The directory cowork will operate on -- defaults to wherever you run
+      # `docker compose up` from. Override with:
+      #   COWORK_WORKSPACE=/path/to/your/project docker compose up
+      - '${COWORK_WORKSPACE:-.}:/workspace'
+    environment:
+      # Optional: seed the API key via env instead of the Settings UI.
+      # Whichever you use, it ends up (or can be changed) in
+      # <workspace>/.agent/.env once saved through Settings.
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - DEEPSEEK_BASE_URL=${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
+      - DEEPSEEK_MODEL=${DEEPSEEK_MODEL:-deepseek-chat}
+    restart: unless-stopped

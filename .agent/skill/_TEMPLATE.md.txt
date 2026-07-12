@@ -1,0 +1,37 @@
+---
+name: my-skill-name
+description: One-sentence summary of what this skill helps the agent do (shown to the LLM at all times).
+triggers: keyword one, keyword two, phrase that hints this skill applies
+type: strategy
+---
+
+<!--
+type must be one of: process | strategy | instruction | planning | experience
+
+Everything below the closing --- is the FULL skill body. It is only loaded
+into context when the LLM explicitly requests it via:
+
+  Action: load_skill[{"name": "my-skill-name"}]
+
+Write it like a runbook for a competent engineer who has never seen this
+codebase/task before. Good skills include:
+  - When to use this (and when NOT to)
+  - Concrete step-by-step approach
+  - Gotchas / edge cases learned from experience
+  - Example command(s) or code snippet(s) if relevant
+-->
+
+## When to use
+Describe the situation that should trigger this skill.
+
+## Steps
+1. ...
+2. ...
+3. ...
+
+## Gotchas
+- ...
+
+Rename this file to something like `refactor-large-file.md` and drop it in
+`.agent/skill/` — it will be picked up automatically on the next agent run
+(no restart/registration step needed beyond the manager's reload()).

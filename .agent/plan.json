@@ -1,0 +1,52 @@
+{
+  "task": "Create a Python script that writes 'hello' to a file named text.txt, then run it",
+  "target-workspace": "/workspace",
+  "sub-tasks": [
+    {
+      "task-id": "1",
+      "task": "Create a Python script (write_hello.py) that writes the string 'hello' to a file named text.txt in the current directory",
+      "command": "Write a Python script at /workspace/write_hello.py with content: with open('text.txt', 'w') as f: f.write('hello')",
+      "validation": "File /workspace/write_hello.py exists and contains the correct Python code",
+      "priority": 1,
+      "status": "done",
+      "depend-on": [],
+      "result": {
+        "status": "done",
+        "summary": "Created /workspace/write_hello.py with content: with open('text.txt', 'w') as f: f.write('hello')",
+        "validation_result": "File /workspace/write_hello.py exists (54 bytes) and contains the exact required Python code: opens text.txt for writing and writes the string 'hello'."
+      }
+    },
+    {
+      "task-id": "2",
+      "task": "Run the Python script write_hello.py",
+      "command": "cd /workspace && python write_hello.py",
+      "validation": "The command exits with code 0 and produces no errors",
+      "priority": 2,
+      "status": "done",
+      "depend-on": [
+        "1"
+      ],
+      "result": {
+        "status": "done",
+        "summary": "Installed python3 via apk on Alpine Linux, then ran `python3 write_hello.py` from /workspace. The script exited with code 0 and produced no errors. Verified that text.txt was created containing 'hello'.",
+        "validation_result": "Command `cd /workspace && python3 write_hello.py` exited with code 0 and no stderr output, satisfying the validation criteria."
+      }
+    },
+    {
+      "task-id": "3",
+      "task": "Verify that text.txt was created and contains the expected content 'hello'",
+      "command": "cat /workspace/text.txt",
+      "validation": "Output is exactly 'hello' (with no trailing newline or extra characters)",
+      "priority": 3,
+      "status": "done",
+      "depend-on": [
+        "2"
+      ],
+      "result": {
+        "status": "done",
+        "summary": "Verified that /workspace/text.txt exists and contains exactly 'hello' with no trailing newline or extra characters (confirmed via xxd hex dump showing only 5 bytes: 68 65 6c 6c 6f).",
+        "validation_result": "Output is exactly 'hello' with no trailing newline or extra characters — validation criteria met."
+      }
+    }
+  ]
+}

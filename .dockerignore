@@ -1,0 +1,8 @@
+**/node_modules
+**/dist
+**/.git
+**/.DS_Store
+server/.agent/logs
+server/.agent/plan.json
+server/.agent/report.md
+*.log
